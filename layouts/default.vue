@@ -67,4 +67,18 @@ html {
 .list-complete-leave-active {
   position: absolute;
 }
+
+::placeholder {
+  color: #000000;
+  opacity: 1;
+}
+
+:-ms-input-placeholder {
+  color: #000000;
+}
+
+::-ms-input-placeholder {
+  color: #000000;
+
+}
 </style>

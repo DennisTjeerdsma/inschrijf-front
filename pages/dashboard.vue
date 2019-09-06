@@ -1,7 +1,7 @@
 <template>
   <div class="relative h-screen w-screen overflow-auto">
     <!--------------Navbar ------------------------>
-    <nav class="flex sticky h-20 items-center bg-primary-500">
+    <nav class="flex sticky h-20 items-center bg-gunmetal-100">
       <fa
         icon="futbol"
         class="text-4xl text-white mx-2"
@@ -12,7 +12,7 @@
     </nav>
     <div class="bg-grey-100 flex items-stretch h-screen shadow overflow-auto">
       <!-------------- Menu----------------------->
-      <div name="menu" class="md:w-48 md:shadow md:pt-16">
+      <div name="menu" class="md:w-48 bg-neutral-100 md:shadow md:pt-16">
         <div v-for="item in linkarray" :key="item.name" class="pt-6">
           <menu-item
             :exact="item.exact"

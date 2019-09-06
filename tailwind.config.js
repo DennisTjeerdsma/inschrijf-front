@@ -34,6 +34,9 @@ module.exports = {
           '700': 'rgba(0, 0, 0, 0.9)'
 
         },
+        gunmetal: {
+          '100': '#272838'
+        },
         'black': 'black'
       }
     }

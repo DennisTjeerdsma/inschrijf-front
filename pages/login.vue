@@ -18,11 +18,12 @@
           <form type="submit" @submit.prevent="authenticate">
             <input-field
               v-model="email"
-              icon="user"
+              icon="envelope"
               name="email"
               type="email"
               placeholder="example@example.com"
               class="mx-4 mb-4"
+              required
             />
             <input-field
               v-model="password"
@@ -31,11 +32,12 @@
               name="password"
               placeholder="Password"
               class="mx-4 mb-4"
+              required
             />
             <div class="flex justify-center">
               <nuxt-link
                 class="text-primary-200 hover:text-primary-400 mb-4"
-                to="/resetpassword"
+                to="/password"
               >
                 Forgot Password?
               </nuxt-link>
@@ -84,10 +86,8 @@ export default {
         })
         .then(response => {
           this.$router.push('/dashboard')
-          console.log(response)
         })
         .catch(e => {
-          console.log(e)
         })
     },
     switchVisibility () {

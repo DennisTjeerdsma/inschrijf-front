@@ -6,8 +6,6 @@ export default function ({ $axios, store, app }) {
     }
     if (error.response.status === 422) {
       store.dispatch('validation/setErrors', error.response.data.errors)
-    } else if (error.response.status !== 404) {
-      app.$toast.error('Something unexpected happened', { duration: 5000 })
     }
     return Promise.reject(error)
   })

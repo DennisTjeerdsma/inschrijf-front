@@ -1,6 +1,6 @@
 <template>
   <div
-    class="text-neutral-400 font-bold rounded-r hover:bg-primary-300 hover:text-white border-transparent hover:shadow cursor-pointer p-4 relative pl-6 fade text-lg"
+    class="text-neutral-500 font-bold rounded-r hover:bg-primary-400 hover:text-white border-transparent hover:shadow cursor-pointer p-4 relative pl-6 fade text-lg"
     :class="{
       'text-primary-300 border-primary-300 border-l-4 cursor-not-allowed': active
     }"
