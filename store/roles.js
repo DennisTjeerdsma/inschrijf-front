@@ -1,4 +1,3 @@
-
 export const state = () => ({
   list: []
 })
@@ -12,9 +11,9 @@ export const mutations = {
 export const actions = {
   async load ({ commit }) {
     const response = await this.$axios.get(
-      'api/userlist'
+      'api/roleslist'
     )
-    commit('setList', response.data)
+    commit('setList', response.data[0])
   }
 }
 

@@ -7,10 +7,10 @@
         class="text-4xl text-white mx-2"
       />
       <span class="text-white text-2xl mx-2">
-        Vakgericht
+        Vakgericht Inschrijfsysteem
       </span>
     </nav>
-    <div class="bg-grey-100 flex items-stretch h-screen shadow overflow-auto">
+    <div class="bg-grey-100 flex items-stretch h-full shadow overflow-auto">
       <!-------------- Menu----------------------->
       <div name="menu" class="md:w-48 bg-neutral-100 md:shadow md:pt-16">
         <div v-for="item in linkarray" :key="item.name" class="pt-6">

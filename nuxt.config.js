@@ -83,7 +83,7 @@ export default {
             propertyName: 'token'
           },
           logout: {
-            url: '/auth/logout'
+            url: 'api/auth/logout'
           },
           user: {
             url: 'api/auth/user',

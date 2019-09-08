@@ -9,11 +9,10 @@
         <!-----------------------User list Rendering---------------->
         <transition-group class="" tag="p">
           <div v-for="user in users" :key="user.id" class="">
-            <user-item v-model="user.checked" :username="user.username" :role="user.roles" :email="user.email" @toggleChecked="toggleChecked(user)" />
+            <user-item v-model="user.checked" :username="user.name" :role="user.role" :email="user.email" @selectItem="selectItem(item.id)" />
           </div>
         </transition-group>
       </div>
-      <confirmation-box />
     </div>
     <div v-else>
       <p>You do not have permission to view this page</p>
@@ -25,28 +24,29 @@
 import { mapGetters, mapActions } from 'vuex'
 import Vue from 'vue'
 import UserItem from '~/components/UserItem.vue'
-import ConfirmationBox from '~/components/ConfirmationBox.vue'
 
 export default {
   components: {
-    UserItem,
-    ConfirmationBox
+    UserItem
   },
   computed: {
     ...mapGetters({
       loggedInUser: 'loggedInUser',
-      users: 'users/list'
+      users: 'users/list',
+      roles: 'roles/list'
     }),
     hasPermission () {
-      return (this.loggedInUser && this.loggedInUser.roles === 'admin') || (this.loggedInUser && this.loggedInUser.roles === 'bestuur')
+      return (this.loggedInUser && this.loggedInUser.role === 'Super Admin') || (this.loggedInUser && this.loggedInUser.role === 'Bestuur')
     }
   },
   mounted () {
+    this.load_roles()
     this.load_users()
   },
   methods: {
     ...mapActions({
-      load_users: 'users/load'
+      load_users: 'users/load',
+      load_roles: 'roles/load'
     }),
     toggleChecked (user) {
       Vue.set(user, 'checked', true)

@@ -1,7 +1,7 @@
 <template>
   <div class="bg-neutral-200 font-sans antialiased h-screen">
     <div class="flex justify-center items-center min-h-full">
-      <div class="w-64 mx-auto my-auto">
+      <div class="w-84">
         <div class="text-center items-center justify-center flex mb-4">
           <p class="text-neutral-400 font-bold text-4xl mb-2 p-2">
             Vakgericht
@@ -10,7 +10,7 @@
         </div>
 
         <div
-          class="w-full shadow bg-white rounded-lg mx-auto my-auto pt-4 border-t-4 border-primary-200"
+          class="w-full shadow bg-white rounded-lg mx-auto my-auto pt-4 border-t-4 border-primary-200 w-84"
         >
           <p class="text-center text-primary-300 text-2xl mb-4 font-bold">
             Sign In

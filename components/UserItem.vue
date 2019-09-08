@@ -1,6 +1,7 @@
 <template>
-  <div class="flex items-center relative items-center justify-between rounded bg-white text-lg text-neutral-500 font-bold pl-6 p-1 px-4" :class="{'text-primary-500 border-b-2 border-primary-100': top}">
+  <div class="flex items-center relative items-center justify-between bg-white text-lg text-neutral-500 font-bold pl-6 p-1 px-4" :class="{'text-primary-500 border-b-2 border-primary-100': top, 'bg-neutral-100': checked}">
     <div class="flex px-4 w-1/6">
+      <input v-if="!top" type="checkbox" @change="selectItem">
       <span>{{ username }}</span>
       <fa v-if="username == 'username'" icon="chevron-down" class="m-2" />
     </div>
@@ -37,10 +38,17 @@ export default {
     top: {
       type: Boolean,
       default: () => false
-    },
-    checked: {
-      type: Boolean,
-      default: () => false
+    }
+  },
+  data () {
+    return {
+      checked: false
+    }
+  },
+  methods: {
+    selectItem () {
+      this.checked = !this.checked
+      this.$emit('selectItem')
     }
   }
 }

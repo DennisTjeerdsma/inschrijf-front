@@ -35,7 +35,7 @@
             Event Title
           </p>
           <input-field v-model="title" name="title" placeholder="Borrel" />
-        </div>
+        </div>nschrijfsysteem
         <div class="pb-2">
           <p class="text-primary-200 pl-2">
             Event Location
@@ -107,8 +107,11 @@
         </div>
       </form>
     </modal>
-    <modal v-if="deletemodal" name="deletemodal">
-      Test
+    <modal class="w-full">
+      <p class="text-neutral-500 text-lg font-sans antialiased">
+        This action will permanently delete the Event
+        Are you sure you wish the proceed?
+      </p>
     </modal>
   </div>
 </template>
@@ -150,7 +153,8 @@ export default {
   computed: {
     ...mapGetters({
       loggedInUser: 'loggedInUser',
-      events: 'events/list'
+      events: 'events/list',
+      roles: 'roles/list'
     }),
     sortedEvents () {
       return this.events.slice().sort((a, b) => {
@@ -160,6 +164,7 @@ export default {
   },
   mounted () {
     this.load_events(this.loggedInUser)
+    this.load_roles()
   },
   methods: {
     ...mapActions({
@@ -167,7 +172,8 @@ export default {
       participate: 'events/participate',
       remove: 'events/delete',
       addEvent: 'events/add',
-      edit: 'events/edit'
+      edit: 'events/edit',
+      load_roles: 'roles/load'
     }),
     deleteEvent (event) {
       this.remove(event)
@@ -182,13 +188,12 @@ export default {
     },
     openModal () {
       this.open = !this.open
-      this.clearFields()
     },
     editEvent (event) {
       this.id = event.id
       this.title = event.title
       this.location = event.location
-      this.enroll = event.enroll
+      this.enroll = !!event.enroll
       this.starttime = this.convertDateTime(event.starttime)
       this.enrolltime = this.convertDateTime(event.enrolltime)
       this.maxparticipants = event.maxparticipants
