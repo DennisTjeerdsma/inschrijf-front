@@ -52,7 +52,7 @@ export const actions = {
   },
   async participate ({ commit }, event = 0) {
     const response = await this.$axios.patch(
-      `api/setenroll/${event.event.id}/${event.userId}`
+      `api/setenroll/${event.event.id}`
     )
     commit('editEvent', response.data)
   },

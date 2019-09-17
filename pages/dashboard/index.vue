@@ -7,7 +7,7 @@
       </add-button>
     </div>
     <!----------------Main list ------------------->
-    <transition-group name="list-complete" tag="p">
+    <transition-group class="list-complete" tag="p">
       <div v-for="item in sortedEvents" :key="item.id" class="pt-6 px-10 list-complete-item">
         <event-item
           :name="item.title"
@@ -35,7 +35,7 @@
             Event Title
           </p>
           <input-field v-model="title" name="title" placeholder="Borrel" />
-        </div>nschrijfsysteem
+        </div>
         <div class="pb-2">
           <p class="text-primary-200 pl-2">
             Event Location
@@ -176,7 +176,7 @@ export default {
       load_roles: 'roles/load'
     }),
     deleteEvent (event) {
-      this.remove(event)
+      if (confirm('This will permanently delete this entry, are you sure you wish to proceed?')) { this.remove(event) }
     },
     setEnroll (event) {
       const payload = {

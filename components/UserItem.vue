@@ -3,19 +3,19 @@
     <div class="flex px-4 w-1/6">
       <input v-if="!top" type="checkbox" @change="selectItem">
       <span>{{ username }}</span>
-      <fa v-if="username == 'username'" icon="chevron-down" class="m-2" />
+      <fa v-if="username == 'Name'" icon="chevron-down" class="m-2 cursor-pointer" />
     </div>
     <div class="flex px-4 w-1/6">
       <span> {{ role }} </span>
-      <fa v-if="role == 'role'" icon="chevron-down" class="m-2" />
+      <fa v-if="role == 'Role'" icon="chevron-down" class="m-2 cursor-pointer" />
     </div>
     <div class="flex px-4 w-1/6">
       <span>{{ email }}</span>
-      <fa v-if="email == 'email'" icon="chevron-down" class="m-2" />
+      <fa v-if="email == 'Email'" icon="chevron-down" class="m-2 cursor-pointer" />
     </div>
     <div class="flex right-0 pr-4 " :class="{'invisible': top}">
-      <fa icon="edit" class="m-2 hover:text-primary-300 cursor-pointer" @editUser="$emit('editUser')" />
-      <fa icon="trash" class="m-2 hover:text-red-400 cursor-pointer" @deleteUser="$emit('deleteUser')" />
+      <fa icon="edit" class="m-2 hover:text-primary-300 cursor-pointer" @click="$emit('editUser')" />
+      <fa icon="trash" class="m-2 hover:text-red-400 cursor-pointer" @click="$emit('deleteUser')" />
     </div>
   </div>
 </template>
@@ -25,15 +25,15 @@ export default {
   props: {
     username: {
       type: String,
-      default: () => 'username'
+      default: () => 'Name'
     },
     role: {
       type: String,
-      default: () => 'role'
+      default: () => 'Role'
     },
     email: {
       type: String,
-      default: () => 'email'
+      default: () => 'Email'
     },
     top: {
       type: Boolean,
