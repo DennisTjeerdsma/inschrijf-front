@@ -7,7 +7,7 @@
       </add-button>
     </div>
     <!----------------Main list ------------------->
-    <transition-group class="list-complete" tag="p">
+    <transition-group name="list-complete" tag="p">
       <div v-for="item in sortedEvents" :key="item.id" class="pt-6 px-10 list-complete-item">
         <event-item
           :name="item.title"

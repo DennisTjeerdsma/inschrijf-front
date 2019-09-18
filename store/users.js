@@ -1,6 +1,7 @@
 
 export const state = () => ({
-  list: []
+  list: [],
+  current_sort: 'name'
 })
 
 export const mutations = {
@@ -18,6 +19,9 @@ export const mutations = {
       if (index === -1) { return }
       state.list.splice(index, 1)
     })
+  },
+  createUser (state, item) {
+    state.list.push(item)
   }
 }
 
@@ -41,6 +45,13 @@ export const actions = {
       `/api/user/delete`, { data: payload }
     )
     commit('multiDeleteUser', response.data)
+  },
+
+  async create ({ commit }, payload) {
+    const response = await this.$axios.post(
+      '/api/user/create', { data: payload }
+    )
+    commit('createUser', response.data)
   }
 }
 

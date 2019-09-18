@@ -1,6 +1,7 @@
 export default function ({ $axios, store, app }) {
   $axios.onError(error => {
     if (error.response.status === 401) {
+      this.$auth('logout')
       app.$router.push('/login')
     }
     if (error.response.status === 422) {
