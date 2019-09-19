@@ -42,14 +42,17 @@ export const actions = {
 
   async multiDelete ({ commit }, payload) {
     const response = await this.$axios.delete(
-      `/api/user/delete`, { data: payload }
+      `/api/user/multidelete`, { data: payload }
     )
     commit('multiDeleteUser', response.data)
   },
 
   async create ({ commit }, payload) {
     const response = await this.$axios.post(
-      '/api/user/create', { data: payload }
+      '/api/user/create', {
+        'name': payload.name,
+        'email': payload.email
+      }
     )
     commit('createUser', response.data)
   }

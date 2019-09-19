@@ -49,15 +49,15 @@
           <p class="text-lg text-primary-300">
             Full Name
           </p>
-          <input-field name="name" placeholder="Bert Blaauw" />
+          <input-field v-model="name" name="name" placeholder="Bert Blaauw" />
         </div>
         <div>
           <p class="text-lg text-primary-300 pt-2">
             Email Adress
           </p>
-          <input-field name="name" type="email" placeholder="example@example.com" />
+          <input-field v-model="email" name="name" type="email" placeholder="example@example.com" />
         </div>
-        <light-button type="submit" class="w-full mt-6" @click="createUser">
+        <light-button buttontype="button" class="w-full mt-6" @click.native="createUser">
           Submit
         </light-button>
       </form>
@@ -157,6 +157,7 @@ export default {
       this.create_user(payload)
       this.email = null
       this.name = null
+      this.open = false
     },
     nameOrder () {
       this.sort = 'name'

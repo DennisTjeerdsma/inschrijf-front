@@ -16,7 +16,7 @@ export const mutations = {
   },
   deleteEvent (state, item) {
     const index = state.list.map(i => i.id).indexOf(item.id)
-    if (index === 1) { return }
+    if (index === -1) { return }
     state.list.splice(index, 1)
   },
   addEvent (state, item) {
@@ -24,7 +24,7 @@ export const mutations = {
   },
   editEvent (state, item) {
     const index = state.list.map(i => i.id).indexOf(item.id)
-    if (index === 1) { return }
+    if (index === -1) { return }
     state.list.splice(index, 1, item)
   }
 }
