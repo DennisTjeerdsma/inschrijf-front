@@ -63,7 +63,7 @@ export default {
     imports: [
       {
         set: '@fortawesome/free-solid-svg-icons',
-        icons: ['faFutbol', 'faUser', 'faKey', 'faEyeSlash', 'faEye', 'faTachometerAlt', 'faSignOutAlt', 'faPlusCircle', 'faDotCircle', 'faEdit', 'faTimes', 'faTrash', 'faChevronDown', 'faChevronUp', 'faEnvelope']
+        icons: ['faFutbol', 'faUser', 'faKey', 'faEyeSlash', 'faEye', 'faBars', 'faTachometerAlt', 'faSignOutAlt', 'faPlusCircle', 'faDotCircle', 'faEdit', 'faTimes', 'faTrash', 'faChevronDown', 'faChevronUp', 'faEnvelope']
       }
     ]
   },

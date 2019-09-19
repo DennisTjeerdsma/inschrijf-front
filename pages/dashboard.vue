@@ -1,5 +1,5 @@
 <template>
-  <div class="relative h-screen w-screen overflow-auto">
+  <div class="relative h-screen w-screen">
     <!--------------Navbar ------------------------>
     <nav class="flex sticky h-20 items-center bg-gunmetal-100">
       <fa
@@ -10,20 +10,27 @@
         Vakgericht Inschrijfsysteem
       </span>
     </nav>
-    <div class="bg-grey-100 flex items-stretch h-full shadow overflow-auto">
+    <div class="bg-grey-100 flex-row md:flex items-stretch h-full shadow">
       <!-------------- Menu----------------------->
-      <div name="menu" class="md:w-48 bg-neutral-100 md:shadow md:pt-16">
-        <div v-for="item in linkarray" :key="item.name" class="pt-6">
-          <menu-item
-            :exact="item.exact"
-            :name="item.name"
-            :icon="item.icon"
-            :link="item.link"
-          />
+      <div name="menu" class="md:w-48 bg-neutral-100 md:shadow md:pt-16 w-screen">
+        <div class="block rounded h-12 text-center p-3 mx-auto md:hidden md:h-20">
+          <button class="w-full" @click="toggle">
+            <fa icon="bars" class="text-2xl text-neutral-500 font-bold" />
+          </button>
         </div>
-        <div class="mx-6 border-t-2 mt-6 bt-6 border-neutral-400" />
-        <div v-for="item in adminarray" :key="item.name" class="pt-6">
-          <menu-item :exact="item.exact" :name="item.name" :icon="item.icon" :link="item.link" />
+        <div :class="open ? 'block': 'hidden'">
+          <div v-for="item in linkarray" :key="item.name" class="pt-2 md:pt-6">
+            <menu-item
+              :exact="item.exact"
+              :name="item.name"
+              :icon="item.icon"
+              :link="item.link"
+            />
+          </div>
+          <div class="mx-6 border-t-2 mt-6 bt-6 border-neutral-400" />
+          <div v-for="item in adminarray" :key="item.name" class="pt-6">
+            <menu-item :exact="item.exact" :name="item.name" :icon="item.icon" :link="item.link" />
+          </div>
         </div>
       </div>
       <!----------------Content -------------------->
@@ -62,8 +69,15 @@ export default {
         name: 'Accounts',
         link: '/dashboard/accounts'
       }
-    ]
-  })
+    ],
+    open: false
+  }),
+  methods: {
+    toggle () {
+      console.log()
+      this.open = !this.open
+    }
+  }
 }
 </script>
 
