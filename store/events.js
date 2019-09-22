@@ -42,8 +42,8 @@ export const actions = {
       `api/event/${event.id}`, {
         title: event.title,
         location: event.location,
-        starttime: event.starttime,
-        enrolltime: event.enrolltime,
+        starttime: moment(event.starttime).format('YYYY-MM-DD HH:mm:ss'),
+        enrolltime: moment(event.enrolltime).format('YYYY-MM-DD HH:mm:ss'),
         enroll: event.enroll,
         maxparticipants: event.maxparticipants
       }

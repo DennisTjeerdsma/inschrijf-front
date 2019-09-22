@@ -2,12 +2,12 @@
   <div>
     <div v-if="hasPermission" class="">
       <!----------------------- Top Bar --------------------------->
-      <div class="shadow-b relative pt-16 pb-4 flex pl-10 shadow border-neutral-200 flex w-full justify-between">
+      <div class="shadow-b relative pt-4 items-center content-center lg:content-left lg:justify-between lg:pt-16 pb-4 px-4 lg:pl-10 shadow border-neutral-200 lg:flex w-full lg:w-auto  mx-auto">
         <add-button icon="plus-circle" @addEvent="openModal">
           Create User
         </add-button>
         <div>
-          <div class="pr-16 flex right-0 items-center">
+          <div class="lg:pr-16 justify-end flex relative items-center">
             <div v-if="selected" class="text-lg text-primary-400 font-bold">
               {{ selected }} Selected
             </div>

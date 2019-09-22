@@ -1,24 +1,24 @@
 <template>
   <div>
-    <div class="rounded flex relative block items-center rounded shadow-xl h-24 font-bold text-neutral-500 border border-neutral-100 overflow-auto cursor-pointer justify-between px-4">
-      <div class="flex items-center">
+    <div class="rounded flex relative block items-center cursor-pointer rounded shadow-xl h-32 font-bold text-neutral-500 border border-neutral-100  ursor-pointer justify-between lg:px-4" @click.self="pushRoute">
+      <div class="flex items-center overflow-auto">
         <fa
           icon="dot-circle"
           class="text-4xl m-2 text-primary-200"
         />
         <span
-          class="text-xl"
+          class="text-xl overflow-auto"
         >
           {{ name }}
         </span>
       </div>
-      <span class="p-4">
+      <span v-if="!!enroll" class="p-4 hidden md:block">
         Participants: {{ participants }}/{{ maxparticipants }}
       </span>
-      <span class="p-4">
+      <span class="p-4 hidden md:block">
         Start: {{ start | formatDate }}
       </span>
-      <span class="p-4">
+      <span class="p-4 hidden lg:block">
         Location: {{ location }}
       </span>
       <div class="flex right-0 pr-4 items-center">
@@ -28,13 +28,13 @@
         <div @click="$emit('editEvent')">
           <fa
             icon="edit"
-            class="text-2xl mx-2 my-4 text-neutral-400 font-bold hover:text-primary-200 cursor-pointer"
+            class="text-2xl mx-2 my-4 text-neutral-400 font-bold hover:text-primary-200 cursor-pointer hidden lg:block"
           />
         </div>
         <div @click="$emit('deleteEvent')">
           <fa
             icon="trash"
-            class="text-2xl mx-2 my-4 text-neutral-400 font-bold hover:text-red-400 cursor-pointer "
+            class="text-2xl mx-2 my-4 text-neutral-400 font-bold hover:text-red-400 cursor-pointer hidden lg:block"
           />
         </div>
       </div>
@@ -78,7 +78,16 @@ export default {
     },
     maxparticipants: {
       type: Number,
+      default: () => 0
+    },
+    id: {
+      type: Number,
       default: () => null
+    }
+  },
+  methods: {
+    pushRoute () {
+      this.$router.push(`dashboard/event/${this.id}`)
     }
   }
 }

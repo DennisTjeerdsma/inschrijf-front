@@ -7,7 +7,7 @@
     @click="navigate"
   >
     <fa :icon="icon" class="absolute top-0  m-1" />
-    <p class="absolute pl-6 pl-2 top-0">
+    <p class="absolute pl-6 pl-2 top-0 text-center">
       {{ name }}
     </p>
   </div>
