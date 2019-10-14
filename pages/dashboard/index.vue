@@ -1,21 +1,26 @@
 <template>
   <div>
     <!---------------- Top Bar -------------------->
-    <div class="shadow-b pt-16 pb-4 flex justify-between pl-10 shadow border-neutral-200">
-      <add-button icon="plus-circle" @addEvent="openModal">
+    <div class="shadow-b pt-4 lg:pt-16 pb-4 lg:justify-start lg:content-left px-4 lg:pl-10 shadow border-neutral-200">
+      <add-button icon="plus-circle" class="w-full mx-auto" @addEvent="openModal">
         Add Event
       </add-button>
+      <div v-if="message">
+        {{ message }}
+      </div>
     </div>
     <!----------------Main list ------------------->
     <transition-group name="list-complete" tag="p">
-      <div v-for="item in sortedEvents" :key="item.id" class="pt-6 px-10 list-complete-item">
+      <div v-for="item in sortedEvents" :key="item.id" class="pt-6 px-2 plg:px-10 list-complete-item">
         <event-item
+          :id="item.id"
           :name="item.title"
           :start="item.starttime"
           :enroll="item.enroll"
           :location="item.location"
           :enrolled="item.enrolled"
           :participants="item.participants"
+          :maxparticipants="maxParticipantsComputed(item)"
           @setEnroll="setEnroll(item)"
           @deleteEvent="deleteEvent(item)"
           @editEvent="editEvent(item)"
@@ -107,12 +112,6 @@
         </div>
       </form>
     </modal>
-    <modal class="w-full">
-      <p class="text-neutral-500 text-lg font-sans antialiased">
-        This action will permanently delete the Event
-        Are you sure you wish the proceed?
-      </p>
-    </modal>
   </div>
 </template>
 
@@ -148,7 +147,8 @@ export default {
     tempEnrolled: false,
     deletemodal: false,
     editing: false,
-    id: null
+    id: null,
+    message: null
   }),
   computed: {
     ...mapGetters({
@@ -184,7 +184,9 @@ export default {
         userId: this.loggedInUser.id
 
       }
-      this.participate(payload)
+      this.participate(payload).catch(err => {
+        this.message = err.response.message
+      })
     },
     openModal () {
       this.open = !this.open
@@ -241,6 +243,12 @@ export default {
     },
     convertDateTime (date) {
       return moment(date).toISOString()
+    },
+    maxParticipantsComputed (item) {
+      if (item.maxparticipants === 0) {
+        return '~'
+      }
+      return item.maxparticipants
     }
   }
 }

@@ -22,6 +22,11 @@ export const mutations = {
   },
   createUser (state, item) {
     state.list.push(item)
+  },
+  editUser (state, item) {
+    const index = state.list.map(i => i.id).indexOf(item.id)
+    if (index === -1) { return }
+    state.list.splice(index, 1, item)
   }
 }
 
@@ -55,6 +60,16 @@ export const actions = {
       }
     )
     commit('createUser', response.data)
+  },
+  async edit ({ commit }, user = 0) {
+    const response = await this.$axios.patch(
+      `api/user/patch/${user.id}`, {
+        name: user.name,
+        email: user.email,
+        role: user.role
+      }
+    )
+    commit('editUser', response.data)
   }
 }
 

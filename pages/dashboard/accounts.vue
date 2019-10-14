@@ -2,12 +2,12 @@
   <div>
     <div v-if="hasPermission" class="">
       <!----------------------- Top Bar --------------------------->
-      <div class="shadow-b relative pt-16 pb-4 flex pl-10 shadow border-neutral-200 flex w-full justify-between">
+      <div class="shadow-b relative pt-4 items-center content-center lg:content-left lg:justify-between lg:pt-16 pb-4 px-4 lg:pl-10 shadow border-neutral-200 lg:flex w-full lg:w-auto  mx-auto">
         <add-button icon="plus-circle" @addEvent="openModal">
           Create User
         </add-button>
         <div>
-          <div class="pr-16 flex right-0 items-center">
+          <div class="lg:pr-16 justify-end flex relative items-center">
             <div v-if="selected" class="text-lg text-primary-400 font-bold">
               {{ selected }} Selected
             </div>
@@ -34,6 +34,7 @@
               :role="user.role"
               :email="user.email"
               @selectItem="selectItem(user.id)"
+              @editUser="editUser(user)"
               @deleteUser="deleteUser(user.id)"
             />
           </div>
@@ -57,7 +58,13 @@
           </p>
           <input-field v-model="email" name="name" type="email" placeholder="example@example.com" />
         </div>
-        <light-button buttontype="button" class="w-full mt-6" @click.native="createUser">
+        <div v-if="editing">
+          <dropdown v-model="role" :selector-array="roles" name="role" :placeholder="role" icon="chevron-down" />
+        </div>
+        <light-button v-if="!editing" buttontype="button" class="w-full mt-6" @click.native="createUser">
+          Submit
+        </light-button>
+        <light-button v-if="editing" buttontype="button" class="w-full mt-6" @click.native="editSubmit">
           Submit
         </light-button>
       </form>
@@ -73,6 +80,7 @@ import AddButton from '~/components/AddButton.vue'
 import Modal from '~/components/Modal.vue'
 import InputField from '~/components/InputField.vue'
 import LightButton from '~/components/LightButton.vue'
+import Dropdown from '~/components/Dropdown.vue'
 
 export default {
   components: {
@@ -80,7 +88,8 @@ export default {
     AddButton,
     Modal,
     InputField,
-    LightButton
+    LightButton,
+    Dropdown
   },
   data () {
     return {
@@ -88,8 +97,11 @@ export default {
       open: false,
       name: null,
       email: null,
+      role: null,
       sort: 'name',
-      order: 'asc'
+      order: 'asc',
+      editing: false,
+      id: null
     }
   },
   computed: {
@@ -124,7 +136,8 @@ export default {
       load_roles: 'roles/load',
       delete_users: 'users/delete',
       multi_delete_users: 'users/multiDelete',
-      create_user: 'users/create'
+      create_user: 'users/create',
+      edit: 'users/edit'
     }),
     selectItem (userId) {
       const index = this.checked.map(i => i).indexOf(userId)
@@ -189,6 +202,32 @@ export default {
       } else {
         this.order = 'asc'
       }
+    },
+    editUser (user) {
+      this.name = user.name
+      this.email = user.email
+      this.role = user.role
+      this.id = user.id
+      this.editing = true
+      this.openModal()
+    },
+    editSubmit () {
+      const payload = {
+        id: this.id,
+        name: this.name,
+        email: this.email,
+        role: this.role
+      }
+      this.edit(payload).then(() => {
+        this.clearFields()
+        this.openModal()
+      })
+    },
+    clearFields () {
+      this.name = null
+      this.email = null
+      this.id = null
+      this.role = null
     }
   }
 }
