@@ -112,12 +112,6 @@
         </div>
       </form>
     </modal>
-    <modal class="w-full">
-      <p class="text-neutral-500 text-lg font-sans antialiased">
-        This action will permanently delete the Event
-        Are you sure you wish the proceed?
-      </p>
-    </modal>
   </div>
 </template>
 

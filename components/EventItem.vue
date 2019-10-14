@@ -77,8 +77,8 @@ export default {
       default: () => 0
     },
     maxparticipants: {
-      type: Number,
-      default: () => 0
+      type: String,
+      default: () => '~'
     },
     id: {
       type: Number,

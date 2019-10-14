@@ -42,6 +42,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import MenuItem from '~/components/MenuItem.vue'
 
 export default {
@@ -57,7 +58,7 @@ export default {
         icon: 'tachometer-alt',
         exact: true
       },
-      { name: 'Profile', link: '/dashboard/profile', icon: 'user' },
+      { name: 'Profile', link: '/dashboard/profile/', icon: 'user' },
       {
         name: 'Logout',
         link: '/logout',
@@ -72,6 +73,11 @@ export default {
     ],
     open: false
   }),
+  computed: {
+    ...mapGetters({
+      loggedInUser: 'loggedInUser'
+    })
+  },
   methods: {
     toggle () {
       console.log()

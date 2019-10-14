@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   props: {
     name: {
@@ -34,6 +36,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      loggedInUser: 'loggedInUser'
+    }),
     active () {
       if (this.exact) {
         return this.$route.path === this.link
@@ -43,7 +48,9 @@ export default {
   },
   methods: {
     navigate () {
-      if (!this.active) {
+      if (!this.active && this.name === 'Profile') {
+        this.$router.push(this.link + this.loggedInUser.id)
+      } else if (!this.active) {
         this.$router.push(this.link)
       }
     }
